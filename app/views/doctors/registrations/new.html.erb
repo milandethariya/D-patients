@@ -5,7 +5,7 @@
 
   <div class="field">
     <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
+    <%= f.text_field :name, autofocus: true,autocomplete: "name" %>
   </div>
   <div class="field">
     <%= f.label :email %><br />
@@ -14,8 +14,12 @@
 
   <div class="field">
     <%= f.label :medical_speciality %><br />
-    <%= f.select :medical_speciality, Doctor::MEDICAL_SPECIALITY %>
- 
+    <%= f.select :medical_speciality,options_from_collection_for_select(Doctor::MEDICAL_SPECIALITY, :first, :last) %>  
+  </div>
+
+  <div class="field">
+    <%= f.label :profile_image %>
+    <%= f.file_field :profile_image %>
   </div>
 
   <div class="field">
