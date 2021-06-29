@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 class Doctors::RegistrationsController < Devise::RegistrationsController
-  before_action :configure_sign_up_params, only: [:create]
+  #before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
-
   # GET /resource/sign_up
   def new
     super
@@ -11,7 +10,24 @@ class Doctors::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    super
+    #super
+    @doctor = Doctor.new(doctor_params)
+    if params[:doctor][:password] == params[:doctor][:password_confirmation]
+      respond_to do |format|
+        if @doctor.save
+          flash[:success] = "User was successfully created."
+          format.html { redirect_to new_doctor_session_path }
+          #format.json { render :show, status: :created, location: @user }
+        else
+          flash.now[:notice] = "unprocessable_entity"
+          format.html { render 'doctors/registrations/new'} 
+          #format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      flash.now[:danger] = "password & conform_password not match"
+      render 'doctors/registrations/new'   
+    end
     #redirect_to staticpage_bye_path
   end
 
@@ -42,13 +58,17 @@ class Doctors::RegistrationsController < Devise::RegistrationsController
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:medical_speciality,:profile_image, :email, :password])
-  end
+  #def configure_sign_up_params
+    #devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:medical_speciality,:profile_image, :email, :password])
+  #end
 
   #If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
     devise_parameter_sanitizer.permit(:account_update, keys: [:name,:medical_speciality,:profile_image])
+  end
+
+  def doctor_params
+    params.require(:doctor).permit(:name,:email,:medical_speciality,:profile_image, :password, :conform_password)
   end
 
   # The path used after sign up.

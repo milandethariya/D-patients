@@ -10,6 +10,17 @@
   </head>
 
   <body>
+    <% flash.each do |key, value| %>
+          <%= "#{key}: #{value}." %>
+    <% end %>
+    
+    <% if doctor_signed_in? %>
+      <%= render 'layouts/doctor_header'%>
+    <% end %>
+
+    <% if patient_signed_in? %>
+      <%= render 'layouts/patient_header'%>
+    <% end %>
     <%= yield %>
   </body>
 </html>

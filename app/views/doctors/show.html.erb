@@ -1,0 +1,2 @@
+<h3 style="text-align: center;"><%= @doctor.name %></h3>
+<%= image_tag @doctor.profile_image.url, style: 'height:10vw;width:10vw;', class: "rounded-circle "if @doctor.profile_image?%>

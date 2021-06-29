@@ -3,4 +3,5 @@ class Patient < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+ 	mount_uploader :patient_profile_image, ProfileImageUploader
 end
