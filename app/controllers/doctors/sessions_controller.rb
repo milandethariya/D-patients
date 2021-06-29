@@ -11,11 +11,16 @@ class Doctors::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   def create
     doctor = Doctor.find_by(email: params[:doctor][:email])
-    if doctor.is_approve
-      super
+    if doctor != nil
+      if doctor.is_approve == true
+        super
+      else
+        flash[:notice] = "#{doctor.name} is not approve by Admin"
+        redirect_to new_doctor_session_path
+      end
     else
-      flash[:notice] = "#{doctor.name} is not approve by Admin"
-      redirect_to new_doctor_session_path
+      flash[:notice] = "doctor is not found"
+      redirect_to new_doctor_registration_path
     end
   end
 

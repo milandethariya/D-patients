@@ -3,7 +3,7 @@ class PatientsController < ApplicationController
 	before_action :set_patient, only:[:show]
 
 	def show
-		
+		puts @patient.inspect
 	end
 
 	private

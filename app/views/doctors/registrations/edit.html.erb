@@ -15,9 +15,10 @@
 
   <div class="field">
     <%= f.label :medical_speciality %><br />
-    <%= f.select :medical_speciality,options_from_collection_for_select(Doctor::MEDICAL_SPECIALITY, :first, :last) %>  
+    <%= f.select :medical_speciality,options_from_collection_for_select(Doctor::MEDICAL_SPECIALITY, :first, :last) %>
   </div>
 
+  <div><%= image_tag @doctor.profile_image.url, style: 'height:10vw;width:10vw;', class: "rounded-circle "if @doctor.profile_image?%></div>
   <div class="field">
     <%= f.label :profile_image %>
     <%= f.file_field :profile_image %>

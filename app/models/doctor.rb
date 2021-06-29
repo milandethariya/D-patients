@@ -3,6 +3,6 @@ class Doctor < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  MEDICAL_SPECIALITY = {1 => 'Neurology',2 => 'Orthopedics',3 => 'Oncology'};
+  MEDICAL_SPECIALITY = {'neurology' => 'Neurology', 'orthopedics' => 'Orthopedics','oncology' => 'Oncology'};
   mount_uploader :profile_image, ProfileImageUploader
 end

@@ -15,11 +15,11 @@
 
   <div class="field">
     <%= f.label :age %><br />
-    <%= f.email_field :age, autofocus: true, autocomplete: "age" %>
+    <%= f.number_field :age, autofocus: true, autocomplete: "age" %>
   </div>
 
   <div class="field">
-    <%= f.label :patient_profile_image %>
+    <%= f.label :patient_profile_image, "Profile Image" %>
     <%= f.file_field :patient_profile_image %>
   </div>
 

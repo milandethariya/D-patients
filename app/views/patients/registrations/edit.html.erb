@@ -18,8 +18,9 @@
     <%= f.number_field :age, autofocus: true, autocomplete: "age" %>
   </div>
 
+  <div><%= image_tag @patient.patient_profile_image.url, style: 'height:3vw;width:5vw;'if @patient.patient_profile_image?%></div>
   <div class="field">
-    <%= f.label :patient_profile_image %>
+    <%= f.label :patient_profile_image, "Profile Image" %>
     <%= f.file_field :patient_profile_image, autocomplete: "patient_profile_image" %>
   </div>
 

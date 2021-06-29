@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:name, :medical_speciality, :email, :password, :current_password)}
     end
     
-=begin    def after_sign_in_path_for(resource)
+    def after_sign_in_path_for(resource)
       if resource.class == Doctor
         puts current_doctor.inspect
         puts "id: #{current_doctor.id}"
@@ -19,6 +19,6 @@ class ApplicationController < ActionController::Base
       end
     end
 
-=end
+
 
 end
