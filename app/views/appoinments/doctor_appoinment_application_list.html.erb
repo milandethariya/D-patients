@@ -1,0 +1,51 @@
+<div class="m-3 row d-flex justify-content-center">
+  <div class="col-md-6">
+    <div class="w-100 timeMagin">
+      <div class="row">
+        <h3 style="text-align: center;">Doctor's Appoinment Application List</h3>
+      </div>
+      <div class="row">
+        <div class="table-responsive-md">
+          <table class="table table-striped">
+            <tr>
+              <th scope="col">Patient Name</th>
+              <th scope="col">Profile</th>
+              <th scope="col">Age</th>
+              <th scope="col">Date</th>
+              <th scope="col">Start Time</th>
+              <th scope="col">End Time</th>
+              <th scope="col">Approve</th>
+              <th scope="col">Reject</th>
+            </tr>
+            <% if @appoinments.present? %>
+              <% @appoinments.each do |appoinment| %>
+                <tr>
+                  <td><%= appoinment.patient.name %></td>
+                  <td><%= image_tag appoinment.patient.patient_profile_image.url,style: 'height:5vw;width:5vw;', class: "rounded-circle "if appoinment.patient.patient_profile_image?%></td>
+                  <td><%= appoinment.patient.age%></td>
+                  <td><%= appoinment.appoinment_date.strftime "%d/%m/%y" %></td>
+                  <td><%= appoinment.start_time %></td>
+                  <td><%= appoinment.end_time %></td>
+                  <% if appoinment.is_approve == true %>
+                    <th>Approved</th>
+                  <% else %>
+                    <th scope="col"><%=link_to "Approve", appoinment_path(appoinment, :type => "approve"), method: 'patch' %></th>
+                  <% end %>
+                  <% if appoinment.is_reject == true %>
+                    <th>Rejcted</th>
+                  <% else %>
+                    <th scope="col"><%=link_to "Reject", appoinment_path(appoinment, :type => "reject"), method: 'patch' %></th>
+                  <% end %>
+                <tr>
+              <% end %>
+            <% else %>
+              <tr>
+                <td colspan="8">Data is not available</td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>  
+</div>  

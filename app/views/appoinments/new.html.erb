@@ -1,0 +1,12 @@
+<h3>Appoinment</h3>
+<%= @doctor.name %>
+<%= image_tag @doctor.profile_image.url, style: 'height:10vw;width:10vw;', class: "rounded-circle "if @doctor.profile_image?%>
+<%= form_for(@appoinment) do |appoinment| %>
+	<%= appoinment.hidden_field :doctor_id, :value =>@doctor.id %>
+	<div>
+		<%= appoinment.label :appoinment_date, "Appoinment Date" %>
+		<%= appoinment.date_field :appoinment_date %>
+	</div> 
+
+	<%= appoinment.submit %>
+<% end %>

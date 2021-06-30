@@ -7,7 +7,13 @@ Rails.application.routes.draw do
 	get "staticpage/bye"
   devise_for :doctors, controllers: { registrations: 'doctors/registrations', sessions: 'doctors/sessions' }
   get 'doctors/show'
+  get 'doctors/index'
   get 'patients/show'
+  resources :appoinments, only:[:new, :create, :update]
+  get 'appoinments/patient_appoinment'
+  get 'appoinments/doctor_appoinment_application_list'
+  get 'appoinments/doctor_appoinment'
+  #get 'appoinments/new/:id' => 'appoinments#new'
   #root to: 'sessions#new'
   #root :to => "/doctors/sign_in" => 'devise/sessions#new'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

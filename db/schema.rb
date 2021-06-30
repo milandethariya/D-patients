@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_29_115832) do
+ActiveRecord::Schema.define(version: 2021_06_30_093249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,21 @@ ActiveRecord::Schema.define(version: 2021_06_29_115832) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "appoinments", force: :cascade do |t|
+    t.bigint "doctor_id"
+    t.bigint "patient_id"
+    t.date "appoinment_date"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "is_approve"
+    t.boolean "is_reject"
+    t.index ["doctor_id", "patient_id", "appoinment_date", "start_time", "end_time"], name: "appoinments_index_with_patient", unique: true
+    t.index ["doctor_id"], name: "index_appoinments_on_doctor_id"
+    t.index ["patient_id"], name: "index_appoinments_on_patient_id"
   end
 
   create_table "doctors", force: :cascade do |t|
@@ -73,4 +88,6 @@ ActiveRecord::Schema.define(version: 2021_06_29_115832) do
     t.index ["reset_password_token"], name: "index_patients_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "appoinments", "doctors"
+  add_foreign_key "appoinments", "patients"
 end

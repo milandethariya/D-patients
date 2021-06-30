@@ -1,0 +1,39 @@
+<div class="m-3 row d-flex justify-content-center">
+  <div class="col-md-6">
+    <div class="w-100 timeMagin">
+      <div class="row">
+        <h3 style="text-align: center;">Patient Appoinments</h3>
+      </div>
+      <div class="row">
+        <div class="table-responsive-md">
+          <table class="table table-striped">
+            <tr>
+              <th scope="col">Doctor Name</th>
+              <th scope="col">Profile</th>
+              <th scope="col">Medical Speciality</th>
+              <th scope="col">Date</th>
+              <th scope="col">Start Time</th>
+              <th scope="col">End Time</th>
+            </tr>
+            <% if @appoinments.present? %>
+              <% @appoinments.each do |appoinment| %>
+                <tr>
+                  <td><%= appoinment.doctor.name %></td>
+                  <td><%= image_tag appoinment.doctor.profile_image.url,style: 'height:10vw;width:10vw;', class: "rounded-circle "if appoinment.doctor.profile_image?%></td>
+                  <td><%= appoinment.doctor.medical_speciality%></td>
+                  <td><%= appoinment.appoinment_date.strftime "%d/%m/%y" %></td>
+                  <td><%= appoinment.start_time %></td>
+                  <td><%= appoinment.end_time %></td>
+                <tr>
+              <% end %>
+            <% else %>
+              <tr>
+                <td colspan="6">Data is not available</td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>  
+</div>	
