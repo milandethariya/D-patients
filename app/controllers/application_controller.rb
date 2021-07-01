@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
     end
     
     def after_sign_in_path_for(resource)
+      puts "name : #{resource.inspect}"
       if resource.class == Doctor
         puts current_doctor.inspect
         puts "id: #{current_doctor.id}"
@@ -16,6 +17,9 @@ class ApplicationController < ActionController::Base
         puts current_patient.inspect
         puts "id: #{current_patient.id}"
         patients_show_path(current_patient)
+      else
+        #super
+        admin_dashboard_path
       end
     end
 

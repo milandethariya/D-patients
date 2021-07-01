@@ -4,7 +4,7 @@ class Patient < ApplicationRecord
   has_many :appoinments
   validates :name, presence: true
   validates :age, presence: true
-  has_many :doctors, through: :appointments
+  has_many :doctors, through: :appoinments
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
  	mount_uploader :patient_profile_image, ProfileImageUploader

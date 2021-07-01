@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  doctor: one
+  start_time: 2021-07-01 10:48:22
+  end_time: 2021-07-01 10:48:22
+
+two:
+  doctor: two
+  start_time: 2021-07-01 10:48:22
+  end_time: 2021-07-01 10:48:22
