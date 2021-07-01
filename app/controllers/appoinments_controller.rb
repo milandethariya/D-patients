@@ -3,7 +3,6 @@ class AppoinmentsController < ApplicationController
 	def new
 		@doctor = Doctor.find(params[:doctor_id])
 		@appoinment = Appoinment.new
-		@slot = ["milan", "jayesh"]
 	end
 
 	def create
@@ -45,6 +44,8 @@ class AppoinmentsController < ApplicationController
 
 	def slot_show
 		appoinmenttimeslot = Doctortimeslot.find_by(doctor_id: params[:id], appoinment_date: params[:select_date])
+		@doctor = Doctor.find(params[:id])
+		@date = params[:select_date]
 		slot_time = appoinmenttimeslot.time_slot
 		start_time = appoinmenttimeslot.start_time
 		end_time = appoinmenttimeslot.end_time
@@ -54,6 +55,7 @@ class AppoinmentsController < ApplicationController
 			start_time = start_time + slot_time*60
 		end
 		puts @slot
+		@appoinment = Appoinment.new
 	end
 
 	private

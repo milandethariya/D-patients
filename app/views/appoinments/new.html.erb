@@ -7,14 +7,11 @@
 		<%= appoinment.label :appoinment_date, "Appoinment Date" %>
 		<%= appoinment.date_field :appoinment_date %>
 	</div> 
-
-	<div id="SelectSlot">
-		<%= appoinment.label :start_time, "Appoinment Date" %>
-		<%= appoinment.select :start_time,  @slot %>
-	</div>
-
-	<%= appoinment.submit %>
 <% end %>
+
+<div id ="SelectSlot">
+
+</div>
 <%#= date_field Date.today, :prefix => :date_end %>
 <%#= select_tag :start_time, options_from_collection_for_select(@slot) %>
 <script>

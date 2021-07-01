@@ -1,4 +1,9 @@
-<div>
-	<%= appoinment.label :start_time, "Appoinment Date" %>
-	<%= appoinment.select :start_time,  @slot %>
-</div> 
+<%= form_for(@appoinment) do |appoinment| %>
+	<%= appoinment.hidden_field :doctor_id, :value =>@doctor.id %>
+	<%= appoinment.hidden_field :appoinment_date, :value =>@date %>
+	<div>
+		<%= appoinment.label :start_time, "Appoinment Time" %>
+		<%= appoinment.select :start_time, @slot %>
+	</div>
+	<%= appoinment.submit %> 
+<% end %>
