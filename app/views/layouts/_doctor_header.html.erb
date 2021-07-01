@@ -2,7 +2,7 @@
   <%= link_to "D-patients", "#", id: "logo" %>
 	<nav>
 		<ul>
-      <li><%= link_to "Profile", doctors_show_path(current_doctor) %></li>
+      <li><%= link_to "Profile", doctor_path(current_doctor) %></li>
       <li><%= link_to "Edit Profile", edit_doctor_registration_path %></li>
       <li><%= link_to "Appointment List", appoinments_doctor_appoinment_application_list_path %></li>
       <li><%= link_to "My Appoinments", appoinments_doctor_appoinment_path %></li>

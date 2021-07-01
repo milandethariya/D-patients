@@ -1,3 +1,28 @@
 <h3 style="text-align: center;"><%= @doctor.name %></h3>
 <%= image_tag @doctor.profile_image.url, style: 'height:10vw;width:10vw;', class: "rounded-circle "if @doctor.profile_image?%>
-<p>set time slot</p>
+<% if current_doctor == @doctor %>
+  <p>set time slot</p>
+  <%= form_for(@settimeslot) do |settimeslot| %>
+    <div>
+      <%= settimeslot.label :appoinment_date, "Select Date" %>
+      <%= settimeslot.date_field :appoinment_date, min: Date.today, :value => Date.today %>
+    </div>
+
+    <div>
+      <%= settimeslot.label :start_time, "Select Start Time" %>
+      <%= settimeslot.time_select :start_time %>
+    </div>
+
+    <div>
+      <%= settimeslot.label :end_time, "Select End Time" %>
+      <%= settimeslot.time_select :end_time %>
+    </div>
+
+    <div>
+      <%= settimeslot.label :time_slot, "Select Appoinment Slot Time" %>
+      <%= settimeslot.time_select :time_slot %>
+    </div>
+
+    <%= settimeslot.submit "Set Time"%>
+  <% end %>
+<% end %>

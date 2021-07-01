@@ -3,6 +3,7 @@ class DoctorsController < ApplicationController
 	before_action :set_doctor, only:[:show]
 
 	def show
+		@settimeslot = Doctortimeslot.new
 	end
 
 	def index
@@ -12,6 +13,6 @@ class DoctorsController < ApplicationController
 	private
 
 	def set_doctor
-		@doctor = Doctor.find(current_doctor.id)
+		@doctor = Doctor.find(params[:id])
 	end
 end

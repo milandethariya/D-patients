@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'doctortimeslots/new'
+  resources :doctortimeslots, only:[:create]
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :patients, controllers: { registrations: 'patients/registrations' }
@@ -7,7 +7,8 @@ Rails.application.routes.draw do
 	get "staticpage/hello"
 	get "staticpage/bye"
   devise_for :doctors, controllers: { registrations: 'doctors/registrations', sessions: 'doctors/sessions' }
-  get 'doctors/show'
+  #get 'doctors/show/:id' => "doctors#show"
+  resources :doctors, only: [:show, :index]
   get 'doctors/index'
   get 'patients/show'
   resources :appoinments, only:[:new, :create, :update]
