@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
       if resource.class == Doctor
         puts current_doctor.inspect
         puts "id: #{current_doctor.id}"
-        doctors_show_path(current_doctor)
+        doctor_path(current_doctor)
       elsif resource.class == Patient
         puts current_patient.inspect
         puts "id: #{current_patient.id}"

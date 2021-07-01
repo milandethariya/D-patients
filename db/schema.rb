@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 2021_07_01_054552) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "appoinment_date"
-    t.datetime "time_slot"
+    t.integer "time_slot"
     t.index ["doctor_id"], name: "index_doctortimeslots_on_doctor_id"
   end
 

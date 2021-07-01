@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   devise_for :doctors, controllers: { registrations: 'doctors/registrations', sessions: 'doctors/sessions' }
   #get 'doctors/show/:id' => "doctors#show"
   resources :doctors, only: [:show, :index]
-  get 'doctors/index'
-  get 'patients/show'
+  resources :patients, only: [:show]
+  #get 'patients/show'
   resources :appoinments, only:[:new, :create, :update]
   get 'appoinments/patient_appoinment'
   get 'appoinments/doctor_appoinment_application_list'
