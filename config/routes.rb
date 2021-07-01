@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :patients, only: [:show]
   #get 'patients/show'
   resources :appoinments, only:[:new, :create, :update]
+  get 'appoinments/slot_show'
   get 'appoinments/patient_appoinment'
   get 'appoinments/doctor_appoinment_application_list'
   get 'appoinments/doctor_appoinment'

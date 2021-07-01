@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
       elsif resource.class == Patient
         puts current_patient.inspect
         puts "id: #{current_patient.id}"
-        patients_show_path(current_patient)
+        patient_path(current_patient)
       else
         #super
         admin_dashboard_path

@@ -8,5 +8,27 @@
 		<%= appoinment.date_field :appoinment_date %>
 	</div> 
 
+	<div id="SelectSlot">
+		<%= appoinment.label :start_time, "Appoinment Date" %>
+		<%= appoinment.select :start_time,  @slot %>
+	</div>
+
 	<%= appoinment.submit %>
 <% end %>
+<%#= date_field Date.today, :prefix => :date_end %>
+<%#= select_tag :start_time, options_from_collection_for_select(@slot) %>
+<script>
+	$(document).ready(function(){
+		$("#appoinment_appoinment_date").on('change', function(event){
+			var select_date = $(this).val();
+			var select_doctor_id = $("#appoinment_doctor_id").val();
+			$.ajax({ 
+				method: "GET",
+				url: '/appoinments/slot_show',
+				dataType: 'script',
+				data: { id: select_doctor_id, select_date: select_date } 
+			});
+		})
+	})
+	
+</script>
