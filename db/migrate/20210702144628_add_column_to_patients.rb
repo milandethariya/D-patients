@@ -1,4 +1,4 @@
-class AddNameAgeProfileImageToPatients < ActiveRecord::Migration[5.2]
+class AddColumnToPatients < ActiveRecord::Migration[5.2]
   def change
   	add_column :patients, :name, :string
   	add_column :patients, :age, :integer

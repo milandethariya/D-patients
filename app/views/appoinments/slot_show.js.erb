@@ -1,1 +1,5 @@
-$("#SelectSlot").html("<%= j render(partial: 'appoinments/set_slot')%>");
+<% if @appoinmenttimeslot.present? %>
+	$("#SelectSlot").html("<%= j render(partial: 'appoinments/set_slot')%>");
+<% else %>
+	$("#SelectSlot").html("<p> Doctor is not available in this date</p>");
+<% end %>
