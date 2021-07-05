@@ -61,8 +61,8 @@ class AppoinmentsController < ApplicationController
         end
         start_time = start_time + slot_time*60
       end
-      @appoinment = Appoinment.new
     end
+    @appoinment = Appoinment.new
   end
 
   private

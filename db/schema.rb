@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_02_144628) do
+ActiveRecord::Schema.define(version: 2021_07_05_051331) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,15 @@ ActiveRecord::Schema.define(version: 2021_07_02_144628) do
     t.index ["doctor_id"], name: "index_doctortimeslots_on_doctor_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.string "content"
+    t.string "notifyable_type"
+    t.bigint "notifyable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["notifyable_type", "notifyable_id"], name: "index_notifications_on_notifyable_type_and_notifyable_id"
+  end
+
   create_table "patients", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -92,9 +101,9 @@ ActiveRecord::Schema.define(version: 2021_07_02_144628) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "patient_profile_image"
     t.string "name"
     t.integer "age"
-    t.string "patient_profile_image"
     t.index ["email"], name: "index_patients_on_email", unique: true
     t.index ["reset_password_token"], name: "index_patients_on_reset_password_token", unique: true
   end
