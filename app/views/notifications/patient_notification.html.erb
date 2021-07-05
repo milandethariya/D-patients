@@ -1,0 +1,31 @@
+<div class="m-3 row d-flex justify-content-center">
+  <div class="col-md-6">
+    <div class="w-100 timeMagin">
+      <div class="row">
+        <h3 style="text-align: center;">Notifications</h3>
+      </div>
+      <div class="row">
+        <div class="table-responsive-md">
+          <table class="table table-striped">
+            <tr>
+              <th scope="col">profile</th>
+              <th scope="col">notification</th>
+            </tr>
+            <% if @notifications.present? %>
+              <% @notifications.each do |notification| %>
+                <tr>
+                  <td><%= image_tag notification.notifyable.patient_profile_image.url,style: 'height:5vw;width:5vw;', class: "rounded-circle "if notification.notifyable.patient_profile_image?%></td>
+                  <td><%= notification.content %></td>
+                <tr>
+              <% end %>
+            <% else %>
+              <tr>
+                <td colspan="6">notifications is not available</td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>  
+</div>	

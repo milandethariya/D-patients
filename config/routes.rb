@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get 'appoinments/patient_appoinment'
   get 'appoinments/doctor_appoinment_application_list'
   get 'appoinments/doctor_appoinment'
+  get 'notifications/doctor_notification'
+  get 'notifications/patient_notification'
   #get 'appoinments/new/:id' => 'appoinments#new'
   #root to: 'sessions#new'
   #root :to => "/doctors/sign_in" => 'devise/sessions#new'

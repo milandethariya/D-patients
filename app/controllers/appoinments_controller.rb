@@ -12,7 +12,8 @@ class AppoinmentsController < ApplicationController
     @appoinment.end_time = (@appoinment.start_time + doctor_appoinment.time_slot * 60).to_time
     @doctor = Doctor.find(params[:appoinment][:doctor_id])
     if @appoinment.save
-      flash.now[:notice] = "succesfully sent appoinment to  #{@doctor.name}"
+      flash[:notice] = "succesfully sent appoinment to  #{@doctor.name}"
+      @doctor.notifications << Notification.new(content: "#{current_patient.name} apply for appoinment as appoinmentdate #{params[:appoinment][:appoinment_date]} at #{@appoinment.start_time.strftime("%H:%M")} to  #{ @appoinment.end_time.strftime("%H:%M")} ")
       redirect_to appoinments_patient_appoinment_path
     else
       flash.now[:notice] = "Appoinment is not set"
@@ -35,12 +36,15 @@ class AppoinmentsController < ApplicationController
 
   def update
     @appoinment = current_doctor.appoinments.find(params[:id])
+    patient = @appoinment.patient
     if params[:type] == "approve"
       flash[:notice] = "appoinment is approve"
       @appoinment.update(is_approve: true, is_reject: false)
+      patient.notifications << Notification.new(content: "your appoinment as appoinment date #{@appoinment.appoinment_date} at #{@appoinment.start_time.strftime("%H:%M")} to #{@appoinment.end_time.strftime("%H:%M")} is Rejected by #{@appoinment.doctor.name} ")
     elsif params[:type] == "reject"
       flash[:notice] = "appoinment is rejected"
       @appoinment.update(is_reject: true, is_approve: false)
+      patient.notifications << Notification.new(content: "your appoinment as appoinment date #{@appoinment.appoinment_date} at #{@appoinment.start_time.strftime("%H:%M")} to #{@appoinment.end_time.strftime("%H:%M")} is Rejected by #{@appoinment.doctor.name} ")
     end
     redirect_to appoinments_doctor_appoinment_application_list_path
   end
