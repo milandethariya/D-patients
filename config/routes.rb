@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   resources :doctortimeslots, only:[:create]
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  get "/admin/doctors/approve/:id" => 'admin/doctors#approve',as:  "admin_approve"
-  get "/admin/doctors/reject/:id" => 'admin/doctors#reject',as:  "admin_reject"
+  get "/admin/doctors/approve_reject/:id" => 'admin/doctors#approve_reject',as:  "admin_doctor_approve_reject"
+  get "/admin/appoinments/approve_reject/:id" => 'admin/appoinments#approve_reject',as:  "admin_appoinment_approve_reject"
   devise_for :patients, controllers: { registrations: 'patients/registrations' }
 	root :to => "staticpage#new"
 	get "staticpage/hello"

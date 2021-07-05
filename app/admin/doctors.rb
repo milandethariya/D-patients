@@ -20,14 +20,11 @@ ActiveAdmin.register Doctor do
     column :email
     column :name
     column :medical_speciality
-    column :profile_image
-    column :created_at
-    column :updateds_at
     column :is_approve
     column :is_reject
     actions do |doctor|
-      a "approve", href: admin_approve_path(doctor)
-      a "reject", href: admin_reject_path(doctor)
+      a "Approve", href: admin_doctor_approve_reject_path(doctor, type: "approve")
+      a "Reject", href: admin_doctor_approve_reject_path(doctor, type: "reject")
     end
     # column :sign_in_count
     
@@ -37,16 +34,13 @@ ActiveAdmin.register Doctor do
   
   controller do
     # This code is evaluated within the controller class
-
-    def approve
+    def approve_reject
       doctor = Doctor.find_by(id: params[:id])
-      doctor.update(is_approve: true, is_reject: false)
-      redirect_to admin_doctors_path
-    end
-
-    def reject
-      doctor = Doctor.find_by(id: params[:id])
-      doctor.update(is_reject: true, is_approve: false)
+      if params[:type] == "approve"
+        doctor.update(is_approve: true, is_reject: false)
+      elsif params[:type] == "reject"
+        doctor.update(is_reject: true, is_approve: false)
+      end
       redirect_to admin_doctors_path
     end
   end
