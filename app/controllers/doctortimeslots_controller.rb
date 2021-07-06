@@ -1,5 +1,5 @@
 class DoctortimeslotsController < ApplicationController
-
+	before_action :authenticate_doctor!, only:[:create]
 	def create
 		@settimeslot = current_doctor.doctortimeslots.build(set_params)
 		#last_appoinment_start_time = Doctortimeslot.find_by(doctor_id: current_doctor.id).end_time if Doctortimeslot.find_by(doctor_id: current_doctor.id).present?

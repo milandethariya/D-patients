@@ -47,4 +47,57 @@
   </div>
 <% end %>
 
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script >
+  $(document).ready(function() {
+    $("#new_patient").validate({
+      onfocusout: function (element) {
+           $(element).valid();
+      },
+      rules: {
+        "patient[name]": {
+        required: true
+        },
+
+        "patient[email]":{
+        email: true,
+        required: true
+
+        },
+
+        "patient[age]":{
+        required: true
+        },
+
+        "patient[password]":{
+        required: true,
+        minlength: 5
+        },
+        "patient[password_confirmation]":{
+          required: true,
+          minlength: 5
+        }
+      },
+      messages: {
+        "patient[name]":{
+          required: "Please enter your name",
+        },
+        "patient[age]":{
+          required: "Please enter your age",
+        },
+        "patient[email]":{
+          required: "Please enter your email ",
+        },
+        "patient[password]":{
+          required: "Please enter password ",
+        },
+        "patient[password_confirmation]":{
+          required: "Please enter password ",
+        },
+      },
+    });
+  });
+</script>
+
 <%= render "patients/shared/links" %>

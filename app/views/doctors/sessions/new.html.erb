@@ -22,5 +22,33 @@
     <%= f.submit "Log in" %>
   </div>
 <% end %>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script >
+  $(document).ready(function() {
+    $("#new_doctor").validate({
+      onfocusout: function (element) {
+           $(element).valid();
+      },
+      rules: {
+        "doctor[email]":{
+          required: true
+        },
+        "doctor[password]":{
+          required: true,
+        }
+      },
+      messages: {
+        "doctor[email]":{
+          required: "Please enter your email ",
+        },
+        "doctor[password]":{
+          required: "Please enter password ",
+        },
+      },
+    });
+  });
+</script>
+
 
 <%= render "doctors/shared/links" %>

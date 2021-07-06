@@ -6,8 +6,6 @@ Rails.application.routes.draw do
   get "/admin/appoinments/approve_reject/:id" => 'admin/appoinments#approve_reject',as:  "admin_appoinment_approve_reject"
   devise_for :patients, controllers: { registrations: 'patients/registrations' }
 	root :to => "staticpage#new"
-	get "staticpage/hello"
-	get "staticpage/bye"
   devise_for :doctors, controllers: { registrations: 'doctors/registrations', sessions: 'doctors/sessions' }
   #get 'doctors/show/:id' => "doctors#show"
   resources :doctors, only: [:show, :index]

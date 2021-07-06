@@ -22,5 +22,8 @@
       <%= render 'layouts/patient_header'%>
     <% end %>
     <%= yield %>
+    <% if patient_signed_in? || doctor_signed_in?%>
+      <%= render 'layouts/footer'%>
+    <% end %>    
   </body>
 </html>

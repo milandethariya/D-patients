@@ -2,10 +2,11 @@ class Patient < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_many :appoinments, dependent: :destroy
+  has_many :notifications, as: :notifyable, dependent: :destroy
+  has_many :doctors, through: :appoinments
+  
   validates :name, presence: true
   validates :age, presence: true
-  has_many :doctors, through: :appoinments
-  has_many :notifications, as: :notifyable
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

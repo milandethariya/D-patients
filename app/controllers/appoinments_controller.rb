@@ -1,5 +1,6 @@
 class AppoinmentsController < ApplicationController
-
+  before_action :authenticate_doctor!, only:[:doctor_appoinment, :doctor_appoinment_application_list, :update]
+  before_action :authenticate_patient!, only:[:create, :patient_appoinment]
   def new
     @doctor = Doctor.find(params[:doctor_id])
     @appoinment = Appoinment.new
@@ -23,15 +24,15 @@ class AppoinmentsController < ApplicationController
   end
 
   def patient_appoinment
-    @appoinments = current_patient.appoinments.where(is_approve: true)
+    @appoinments = current_patient.appoinments.update_scope.where(is_approve: true)
   end
 
   def doctor_appoinment
-    @appoinments = current_doctor.appoinments.where(is_approve: true)
+    @appoinments = current_doctor.appoinments.update_scope.where(is_approve: true)
   end
 
   def doctor_appoinment_application_list
-    @appoinments = current_doctor.appoinments
+    @appoinments = current_doctor.appoinments.create_scope
   end
 
   def update

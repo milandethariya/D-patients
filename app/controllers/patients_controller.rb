@@ -1,5 +1,5 @@
 class PatientsController < ApplicationController
-	#before_action :authenticate_patient!
+	before_action :authenticate_patient!
 	before_action :set_patient, only:[:show]
 
 	def show
@@ -10,6 +10,6 @@ class PatientsController < ApplicationController
 	private
 
 	def set_patient
-		@patient = Patient.find(current_patient.id)
+		@patient = Patient.find(params[:id])
 	end
 end
